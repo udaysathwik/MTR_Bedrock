@@ -1,70 +1,32 @@
-package org.mtr.mod.screen;
+export class DashboardListItem {
+    constructor(id, name, color, data = null) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+        this.data = data; // optional reference like NameColorDataBase
+    }
 
-import org.mtr.core.data.NameColorDataBase;
+    // 📌 Get display name
+    getName(formatted = false) {
+        return this.name;
+    }
 
-import java.util.Locale;
+    // 🎨 Get color
+    getColor(formatted = false) {
+        return this.color;
+    }
 
-public class DashboardListItem implements Comparable<DashboardListItem> {
+    // 🧠 Used for sorting (same logic as Java)
+    combineKey() {
+        return (
+            (this.name || "") +
+            (this.color || "") +
+            (this.id || 0)
+        ).toLowerCase();
+    }
 
-	public final long id;
-	public final NameColorDataBase data;
-
-	private final String name;
-	private final int color;
-
-	// 🚀 CACHE (NEW - prevents recomputation in sorting)
-	private final String sortKey;
-
-	// ========================= CONSTRUCTORS =========================
-
-	public DashboardListItem(long id, String name, int color) {
-		this.id = id;
-		this.name = name != null ? name : "";
-		this.color = color;
-		this.data = null;
-		this.sortKey = buildSortKey();
+    // 🔁 Compare function (for sorting lists)
+    static compare(a, b) {
+        return a.combineKey().localeCompare(b.combineKey());
+    }
 	}
-
-	public DashboardListItem(NameColorDataBase data) {
-		this.data = data;
-		this.id = data != null ? data.getId() : -1;
-		this.name = data != null ? data.getName() : "";
-		this.color = data != null ? data.getColor() : 0;
-		this.sortKey = buildSortKey();
-	}
-
-	// ========================= GETTERS =========================
-
-	public String getName(boolean formatted) {
-		return name;
-	}
-
-	public int getColor(boolean formatted) {
-		return color;
-	}
-
-	// ========================= SORTING =========================
-
-	private String buildSortKey() {
-		// 🚀 Precomputed once (important performance improvement)
-		return (name + "#" + color + "#" + id)
-				.toLowerCase(Locale.ENGLISH);
-	}
-
-	@Override
-	public int compareTo(DashboardListItem other) {
-		if (other == null) return -1;
-		return this.sortKey.compareTo(other.sortKey);
-	}
-
-	// ========================= DEBUG =========================
-
-	@Override
-	public String toString() {
-		return "DashboardListItem{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", color=" + color +
-				'}';
-	}
-}
