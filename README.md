@@ -35,7 +35,7 @@ See CREDITS.md
 
 License
 
-See LICENSE
+See LICENSE.md
 
 Disclaimer
 
