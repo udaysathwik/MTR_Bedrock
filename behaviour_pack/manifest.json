@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "MTR for Bedrock",
+    "description": "MTR for Bedrock Behavior Pack",
+    "uuid": "ad983e4f-b379-45dd-8fd4-ac7af86b9d6e",
+    "version": [0, 0, 1],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "21b7483a-1d56-4514-aa63-749506f111b6",
+      "version": [0, 0, 1]
+    }
+  ]
+}
