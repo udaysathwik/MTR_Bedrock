@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "MTR for Bedrock Resources",
+    "description": "MTR for Bedrock Resource Pack",
+    "uuid": "b31f4e7f-33ea-469c-8a69-a626963e961f",
+    "version": [0, 0, 1],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "0bb18fc5-1198-4c61-8787-89e2de0c3959",
+      "version": [0, 0, 1]
+    }
+  ]
+}
